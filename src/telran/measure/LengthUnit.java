@@ -10,12 +10,11 @@ public enum LengthUnit {
 	}
 
 	public Length between(Length l1, Length l2) {
-		// TODO
 		// returns Length object as length between l1 and l2 in "this" units
 		// Example: LengthUnit.M.between (new Length(200, LengthUnit.CM), new Length(1,
 		// LengthUnit.M))
 		// returns Length(1, LengthUnit.M)
-		return null;
+		return new Length(l2.convert(this).getAmount() - l1.convert(this).getAmount(), this);
 	}
 
 	public float getValue() {

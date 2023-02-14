@@ -18,8 +18,6 @@ class DayOfWeekTest {
 		DayOfWeek[] array = DayOfWeek.values();
 		assertEquals(DayOfWeek.SUN, array[0]);
 		assertEquals(7, array.length);
-		assertEquals(7, array.length);
-
 	}
 
 	@Test

@@ -2,11 +2,11 @@ package telran.measure;
 
 public class Length implements Comparable<Length> {
 	private float amount;
-	private LengthUnit lengthUnit;
+	private LengthUnit unit;
 
 	public Length(float amount, LengthUnit lengthUnit) {
 		this.amount = amount;
-		this.lengthUnit = lengthUnit;
+		this.unit = lengthUnit;
 	}
 
 	@Override
@@ -14,8 +14,15 @@ public class Length implements Comparable<Length> {
 	 * equals two Length objects according to LengthUnit and amount 10m == 10000mm
 	 */
 	public boolean equals(Object obj) {
-		// TODO
-		return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Length lenght = (Length) obj;
+
+		return compareTo(lenght) == 0;
 	}
 
 	@Override
@@ -26,8 +33,8 @@ public class Length implements Comparable<Length> {
 	 *         than "o" object, == 0 "this" object equals "o" object,
 	 */
 	public int compareTo(Length o) {
-		// TODO
-		return -1;
+		
+		return Float.compare(amount * unit.getValue(), o.amount * o.unit.getValue());
 	}
 
 	/**
@@ -36,10 +43,9 @@ public class Length implements Comparable<Length> {
 	 * @return new Length object with a given LengthUnit example,
 	 *         convert(LengthUnit.M) returns Length in meters
 	 */
-	public Length convert(LengthUnit unit) {
-		// TODO
+	public Length convert(LengthUnit newUnit) {
 
-		return null;
+		return new Length(amount * unit.getValue() / newUnit.getValue(), newUnit);
 	}
 
 	@Override
@@ -48,8 +54,8 @@ public class Length implements Comparable<Length> {
 	 * Example: 20.0M (string expression of Length object presenting 20 meters)
 	 */
 	public String toString() {
-		// TODO
-		return null;
+		
+		return "" + amount + unit;
 	}
 
 	public float getAmount() {
@@ -57,7 +63,7 @@ public class Length implements Comparable<Length> {
 	}
 
 	public LengthUnit getUnit() {
-		return lengthUnit;
+		return unit;
 	}
 
 }
